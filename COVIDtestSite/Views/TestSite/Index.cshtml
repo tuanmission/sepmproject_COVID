@@ -1,0 +1,41 @@
+﻿@model COVIDtestSite.ViewModels.TestSiteViewModel;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+@if (Model.testingSites.Count == 0)
+{
+    <h2>No Testing Sites have Been Added</h2>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Test Site Type</th>
+                    <th scope="col">View Details</th>
+                </tr>
+            
+            </thead>
+            <tbody>
+                @foreach (TestingSite ts in Model.testingSites)
+                {
+                <tr>
+                    <td>@ts.TestSiteName</td>
+                    <td>@ts.Address</td>
+                    <td>@ts.TestsiteType.TypeName</td>
+                    <td>@Html.ActionLink("View Site Details", "TestSiteDetails", "TestSite", new { id = ts.Id }, new { @class="btn btn-primary" })</td>
+                </tr>
+                }
+            </tbody>
+            
+        </table>
+    </div>
+}
+
