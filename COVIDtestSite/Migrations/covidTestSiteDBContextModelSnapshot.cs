@@ -111,6 +111,35 @@ namespace COVIDtestSite.Migrations
                     b.ToTable("TestsiteType");
                 });
 
+            modelBuilder.Entity("COVIDtestSite.Models.checkin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("TestingSiteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("medicareNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("phoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TestingSiteId");
+
+                    b.ToTable("checkins");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -330,6 +359,17 @@ namespace COVIDtestSite.Migrations
                     b.Navigation("Provider");
 
                     b.Navigation("TestsiteType");
+                });
+
+            modelBuilder.Entity("COVIDtestSite.Models.checkin", b =>
+                {
+                    b.HasOne("COVIDtestSite.Models.TestingSite", "testsite")
+                        .WithMany()
+                        .HasForeignKey("TestingSiteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("testsite");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

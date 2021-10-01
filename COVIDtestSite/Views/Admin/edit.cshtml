@@ -1,0 +1,54 @@
+﻿@model COVIDtestSite.ViewModels.EditViewModel
+@{
+    ViewData["Title"] = "edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Test Site</h1>
+@using (Html.BeginForm("save", "Admin", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>Test Site Name</label>
+        @Html.TextBoxFor(m => m.TestSiteName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TestSiteName)
+    </div>
+    <div class="form-group">
+        <label>Provider</label>
+        @Html.DropDownListFor(m => m.ProviderId, new SelectList(Model.providers, "Id", "ProviderName", Model.ProviderId), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ProviderId)
+    </div>
+
+    <div class="form-group">
+        <label>Test Site Type</label>
+        @Html.DropDownListFor(m => m.TestsiteTypeId, new SelectList(Model.testsites, "Id", "TypeName", Model.TestsiteTypeId), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TestsiteTypeId)
+    </div>
+
+    <div class="form-group">
+        <label>Address</label>
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Address)
+    </div>
+    <div class="form-group">
+        <label>Latitude</label>
+        @Html.TextBoxFor(m => m.latitude, new { @class = "form-control" })
+
+    </div>
+    <div class="form-group">
+        <label>Longitude</label>
+        @Html.TextBoxFor(m => m.longitude, new { @class = "form-control" })
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Wait Time</label>
+        @Html.TextBoxFor(m => m.WaitingTime, new { @class = "form-control" })
+
+    </div>
+
+    @Html.HiddenFor(m => m.Id);
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+

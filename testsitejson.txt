@@ -1,0 +1,67 @@
+[
+    {
+        "id": 1,
+        "testSiteName": "IPC Health Deer Park",
+        "providerId": 7,
+        "waitingTime": "0",
+        "latitude": -37.766409633,
+        "longitude": 144.775812975,
+        "testsiteTypeId": 2,
+        "address": "106 Station Road, Deer Park 3023",
+        "provider": null,
+        "testsiteType": {
+            "id": 2,
+            "typeName": "Drive-Thru"
+        }
+    },
+    {
+        "id": 2,
+        "testSiteName": "Sunshine Hospital",
+        "providerId": 3,
+        "waitingTime": "0",
+        "latitude": -37.759021034,
+        "longitude": 144.817335002,
+        "testsiteTypeId": 1,
+        "address": "176 Furlong Road St Albans 3023",
+        "provider": null,
+        "testsiteType": {
+            "id": 1,
+            "typeName": "Walk-in"
+        }
+    },
+    {
+        "id": 3,
+        "testSiteName": "Melton Bunnings",
+        "providerId": 3,
+        "waitingTime": "0",
+        "latitude": -37.688997107,
+        "longitude": 144.601519528,
+        "testsiteTypeId": 2,
+        "address": "High St Melton 3337",
+        "provider": null,
+        "testsiteType": {
+            "id": 2,
+            "typeName": "Drive-Thru"
+        }
+    }
+]
+
+[
+    {
+        "id": 1,
+        "testSiteName": "IPC Health Deer Park",
+        "providerId": 7,
+        "waitingTime": "0",
+        "latitude": -37.766409633,
+        "longitude": 144.775812975,
+        "testsiteTypeId": 2,
+        "address": "106 Station Road, Deer Park 3023",
+        "provider": {
+            "id": 7,
+            "providerName": "IPC Health",
+            "medicareNo": 207103,
+            "service": "Primary Care",
+            "accreditationNo": 5632782
+        },
+        "testsiteType": null
+    },

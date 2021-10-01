@@ -23,6 +23,8 @@ namespace COVIDtestSite.Data
         public virtual DbSet<TestingSite> TestingSites { get; set; }
         public virtual DbSet<TestsiteType> TestsiteTypes { get; set; }
 
+        public virtual DbSet<checkin> checkins { get; set; }
+
 //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //        {
 //            if (!optionsBuilder.IsConfigured)

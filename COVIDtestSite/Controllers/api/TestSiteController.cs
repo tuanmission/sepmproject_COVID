@@ -44,6 +44,14 @@ namespace COVIDtestSite.Controllers.api
             return returnDTO;
         }
 
+        [HttpGet]
+
+
+        public IEnumerable<TestSiteDTO> returnTestSite()
+        {
+            return _ctxt.TestingSites.Include(m => m.TestsiteType).ToList().Select(mapper.Map<TestingSite, TestSiteDTO>);
+        }
+
 
 
        

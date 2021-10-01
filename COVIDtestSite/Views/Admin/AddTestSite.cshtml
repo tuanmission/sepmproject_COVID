@@ -6,12 +6,12 @@
 
 <h1>Add A New Test Site</h1>
 
-@using (Html.BeginForm("Save", "TestSite", FormMethod.Post))
+@using (Html.BeginForm("add", "Admin", FormMethod.Post))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.TestSiteName)
         @Html.TextBoxFor(m => m.TestSiteName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m=>m.TestSiteName)
+        @Html.ValidationMessageFor(m => m.TestSiteName)
     </div>
     <div class="form-group">
         <label>Provider</label>
@@ -29,6 +29,16 @@
         <label>Address</label>
         @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Address)
+    </div>
+    <div class="form-group">
+        <label>Latitude</label>
+        @Html.TextBoxFor(m => m.lattitude, new { @class = "form-control" })
+        
+    </div>
+    <div class="form-group">
+        <label>Longitude</label>
+        @Html.TextBoxFor(m => m.longitude, new { @class = "form-control" })
+        
     </div>
     <button type="submit" class="btn btn-primary">Add</button>
 

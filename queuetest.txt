@@ -1,0 +1,9 @@
+  {
+        "id": 1,
+        "name": "Diane Whethers",
+        "medicareNumber": "12233333",
+        "phoneNumber": "0405033022",
+        "address": "11 Cairnlea Dr Cairnlea 3023",
+        "testingSiteId": 1,
+        "testsite": null
+    }

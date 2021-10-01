@@ -18,6 +18,9 @@ namespace COVIDtestSite.MapProfiles
             CreateMap<TestingSite, TestSiteDTO>();
             CreateMap<TestsiteType, TestSiteTypeDTO>();
             CreateMap<TestSiteTypeDTO, TestsiteType>();
+            CreateMap<checkin, CheckInDTO>();
+            CreateMap<CheckInDTO,checkin>();
+
 
         }
 

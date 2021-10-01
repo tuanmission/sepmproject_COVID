@@ -21,26 +21,11 @@ namespace COVIDtestSite.Controllers
         }
         public IActionResult Index()
         {
-            var testsites = _ctxt.TestingSites.Include(m => m.TestsiteType).ToList();
-            var viewModel = new TestSiteViewModel
-            {
-
-                testingSites = testsites
-            };
-            return View(viewModel);
+         
+            return View();
         }
 
-        public IActionResult AddTestSite()
-        {
-            var providers = _ctxt.Providers.ToList();
-            var testsitetypes = _ctxt.TestsiteTypes.ToList();
-            AddTestSiteViewModel viewModel = new AddTestSiteViewModel
-            {
-                providers = providers,
-                testsitetypes = testsitetypes
-            };
-            return View(viewModel);
-        }
+       
 
         [Route("TestSite/details/{id}")]
         public IActionResult TestSiteDetails(int id)
@@ -54,23 +39,32 @@ namespace COVIDtestSite.Controllers
             return View(viewmodel);
         }
 
-        [HttpPost]
-        public IActionResult Save(AddTestSiteViewModel mdl)
-
+     
+        public IActionResult CheckIn(int id)
         {
-
-            TestingSite ts = new TestingSite
+            var viewmodel = new CheckInViewModel
             {
-                Address = mdl.Address,
-                TestSiteName = mdl.TestSiteName,
-                WaitingTime = "0",
-                ProviderId = mdl.ProviderId,
-                TestsiteTypeId = mdl.TestsiteTypeId
+                TestingSiteId = id
+            };
+            return View(viewmodel);
+        }
+
+        
+
+        public IActionResult checkinsave(CheckInViewModel mdl)
+        {
+            checkin cs = new checkin
+            {
+                name = mdl.name,
+                medicareNumber = mdl.medicareNumber,
+                address = mdl.address,
+                phoneNumber = mdl.phoneNumber,
+                TestingSiteId = mdl.TestingSiteId
 
             };
-            _ctxt.TestingSites.Add(ts);
+            _ctxt.checkins.Add(cs);
             _ctxt.SaveChanges();
-            return RedirectToAction("Index", "TestSite");
+            return RedirectToAction("TestSiteDetails", "TestSite", new { id = mdl.TestingSiteId });
         }
 
   

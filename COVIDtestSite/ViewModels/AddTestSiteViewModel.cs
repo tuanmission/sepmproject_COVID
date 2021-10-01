@@ -32,6 +32,9 @@ namespace COVIDtestSite.ViewModels
         [Required]
         public string Address { get; set; }
 
+        public decimal lattitude { get; set; }
+        public decimal longitude { get; set; }
+
         public List<Provider> providers { get; set; }
 
         public List<TestsiteType> testsitetypes { get; set; }
