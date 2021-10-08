@@ -166,3 +166,4 @@ C:\Users\tuanm\Documents\Software Engineering Project Management\COVIDtestSite\C
 C:\Users\tuanm\Documents\Software Engineering Project Management\COVIDtestSite\COVIDtestSite\obj\Debug\net5.0\Razor\Views\Admin\Index.cshtml.g.cs
 C:\Users\tuanm\Documents\Software Engineering Project Management\COVIDtestSite\COVIDtestSite\obj\Debug\net5.0\Razor\Views\Admin\edit.cshtml.g.cs
 C:\Users\tuanm\Documents\Software Engineering Project Management\COVIDtestSite\COVIDtestSite\obj\Debug\net5.0\Razor\Views\Admin\AddTestSite.cshtml.g.cs
+C:\Users\tuanm\Documents\Software Engineering Project Management\COVIDtestSite\COVIDtestSite\obj\Debug\net5.0\COVIDtestSite.csprojAssemblyReference.cache
