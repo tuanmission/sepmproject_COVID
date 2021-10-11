@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model COVIDtestSite.ViewModels.ConfigureUserViewModel 
+@{
+    ViewData["Title"] = "ConfigureUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Current Registered Users</h1>
+
+<div class="table-responsive">
+    <table class="table-hover table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">UserName</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (IdentityUser usr in Model.users)
+            {
+                <tr>
+                    <td>@usr.UserName</td>
+                    <td>@usr.Email</td>
+                    <td>@usr.PhoneNumber</td>
+                    <td>@Html.ActionLink("Add to Admin", "addUsertoAdmin", "Admin", new { userId = usr.Id }, new { @class = "btn btn-primary" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

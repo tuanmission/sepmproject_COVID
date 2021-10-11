@@ -1,0 +1,17 @@
+Admin Account
+UserName:SysAdmin
+Password : Admin1234!
+
+
+Registered User Accounts 
+Username:Moniq
+Password: Moniq1234! Monash Health
+
+Username:Jami1234
+Password: Jami1234! Western Health
+
+Username:Funki1234
+Password: Funki1234! IPC Health
+
+Username: Georgi1234
+Password: Goergi1234! DPV Health

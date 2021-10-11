@@ -6,24 +6,107 @@ using System.Threading.Tasks;
 using COVIDtestSite.Data;
 using COVIDtestSite.ViewModels;
 using COVIDtestSite.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace COVIDtestSite.Controllers
 {
     public class AdminController : Controller
     {
         private covidTestSiteDBContext _ctxt;
-        public AdminController( covidTestSiteDBContext context)
+        private UserManager<IdentityUser> _mgr;
+        
+        public AdminController( covidTestSiteDBContext context, UserManager<IdentityUser> manager)
         {
             this._ctxt = context;
+            this._mgr = manager;
+            
         }
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult AddTestSite()
+        [Authorize(Roles=Roles.admin)]
+        public async Task <IActionResult> ManageUserRoles()
         {
-            var providers = _ctxt.Providers.ToList();
+            IList<IdentityUser> adminusers = await _mgr.GetUsersInRoleAsync(Roles.admin);
+            var user = await _mgr.GetUserAsync(User);
+            if (adminusers.Contains(user))
+            {
+                adminusers.Remove(user);
+            }
+            ManageUserRoleViewModel mdl = new ManageUserRoleViewModel
+            {
+                currentUsers = adminusers
+            };
+            return View(mdl);
+            
+        }
+      
+
+        [Authorize(Roles = Roles.admin)]
+        public async   Task<IActionResult> ConfigureUsers()
+        {
+            IList<IdentityUser> registeredUsers = await _mgr.GetUsersInRoleAsync(Roles.registereduser);
+            var user = await _mgr.GetUserAsync(User);
+            if (registeredUsers.Contains(user))
+            {
+                registeredUsers.Remove(user);
+            }
+            ConfigureUserViewModel mdl = new ConfigureUserViewModel
+            {
+                users = registeredUsers
+            };
+            return View(mdl);
+        }
+
+        
+
+        public async Task<IActionResult> addUsertoAdmin(string userId)
+        {
+            IdentityUser usr = await _mgr.FindByIdAsync(userId);
+            await _mgr.AddToRoleAsync(usr, Roles.admin);
+            await _mgr.RemoveFromRoleAsync(usr, Roles.registereduser);
+            return RedirectToAction("ManageUserRoles", "Admin");
+
+
+        }
+
+
+        public async Task<IActionResult> RemoveUserfromAdmin(string userId)
+        {
+            IdentityUser usr = await _mgr.FindByIdAsync(userId);
+            await _mgr.RemoveFromRoleAsync(usr, Roles.admin);
+            await _mgr.AddToRoleAsync(usr, Roles.registereduser);
+            return RedirectToAction("ManageUserRoles", "Admin");
+
+
+        }
+
+
+        [Authorize]
+
+        public async Task <IActionResult> AddTestSite()
+        {
+            
+            List<Provider> providers = new List<Provider>();
+            
+             if (User.IsInRole(Roles.registereduser))
+            {
+                var user = await _mgr.GetUserAsync(User);
+                ApplicationUser usr = _ctxt.ApplicationUsers.FirstOrDefault(m => m.Id == user.Id);
+                providers = _ctxt.Providers.Where(m => m.Id == usr.ProviderId).ToList();
+            }
+            else
+            {
+                providers = _ctxt.Providers.ToList();
+            }
+            
             var testsitetypes = _ctxt.TestsiteTypes.ToList();
             AddTestSiteViewModel viewModel = new AddTestSiteViewModel
             {
@@ -82,6 +165,7 @@ namespace COVIDtestSite.Controllers
             return View(viewMdl);
         }
 
+        [Authorize]
         public IActionResult patientqueue(int id)
 
         {
@@ -94,6 +178,7 @@ namespace COVIDtestSite.Controllers
             return View(mdl);
         }
 
+        [Authorize]
         public IActionResult List()
         {
             return View();

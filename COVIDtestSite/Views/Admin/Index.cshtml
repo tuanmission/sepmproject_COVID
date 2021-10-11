@@ -6,7 +6,12 @@
 
 <h1>Admin Portal</h1>
 
-@Html.ActionLink("View Test Sites", "List", "Admin", "", new { @class = "btn btn-primary" });
+@Html.ActionLink("View Test Sites", "List", "Admin", "", new { @class = "btn btn-primary" })
+@if (User.IsInRole(Roles.admin))
+{
+    @Html.ActionLink("View Current Registered Users", "ConfigureUsers", "Admin", "", new { @class = "btn btn-primary" });
+    @Html.ActionLink("View Current Admins", "ManageUserRoles", "Admin", "", new { @class = "btn btn-primary" });
 
+}
 
 

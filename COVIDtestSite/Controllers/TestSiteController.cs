@@ -49,6 +49,11 @@ namespace COVIDtestSite.Controllers
             return View(viewmodel);
         }
 
+        public IActionResult CheckOut()
+        {
+            return View();
+        }
+
         
 
         public IActionResult checkinsave(CheckInViewModel mdl)

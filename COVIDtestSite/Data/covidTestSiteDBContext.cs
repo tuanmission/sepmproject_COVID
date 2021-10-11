@@ -25,6 +25,8 @@ namespace COVIDtestSite.Data
 
         public virtual DbSet<checkin> checkins { get; set; }
 
+        public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
 //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //        {
 //            if (!optionsBuilder.IsConfigured)
